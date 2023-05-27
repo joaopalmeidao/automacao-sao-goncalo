@@ -16,23 +16,20 @@ class Read_img():
 
         img = cv2.imread(img)
 
-        data = []
+        path = os.path.join(r'C:\Program Files\Tesseract-OCR','tesseract.exe')
 
-        path = 'C:\Program Files\Tesseract-OCR'
-
-        pytesseract.pytesseract.tesseract_cmd = path + r'\\tesseract.exe'
-
+        pytesseract.pytesseract.tesseract_cmd = path
+        
         text = pytesseract.image_to_string(img, lang='por')
 
-        info = (
-            text,
-            file_name,
-        )
+        info = {
+            'text': text,
+            'file_name': file_name,
+            
+        }
 
-        data.append(info)
-
-        return data
-
+        return info
+    
 
 if __name__ == '__main__':
     img = Read_img(r'arquivos\\')
